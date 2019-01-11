@@ -1,0 +1,36 @@
+{
+	"name": "colormark",
+	"version": "1.0.0",
+	"description": "Bookmark your favorite colors",
+	"main": "server.js",
+	"author": "Piyush Pawar <piyushpawar25@gmail.com>",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client-install": "npm install --prefix client",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+		"format": "prettier --write **/*.js",
+		"lint": "eslint ."
+	},
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"cookie-session": "^2.0.0-beta.3",
+		"express": "^4.16.4",
+		"lodash": "^4.17.11",
+		"mongoose": "^5.3.15",
+		"passport": "^0.4.0",
+		"passport-google-oauth20": "^1.0.0"
+	},
+	"devDependencies": {
+		"concurrently": "^4.1.0",
+		"eslint": "^5.11.0",
+		"eslint-config-prettier": "^3.3.0",
+		"eslint-plugin-prettier": "^3.0.0",
+		"nodemon": "^1.18.9",
+		"prettier": "^1.15.3"
+	}
+}

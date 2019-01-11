@@ -1,2 +1,3 @@
-# colormark
+# Colormark
+
 Bookmark your favorite colors
