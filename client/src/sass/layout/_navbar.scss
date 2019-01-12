@@ -1,0 +1,43 @@
+.navbar {
+	height: 7rem;
+	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+	display: flex;
+	align-items: center;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__logo {
+		width: 15rem;
+	}
+
+	&__links {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		font-size: 1.6rem;
+	}
+
+	&__link,
+	a {
+		display: inline-block;
+		text-decoration: none;
+		list-style: none;
+		color: $default-font-color;
+
+		&--active {
+			color: $color-primary;
+		}
+
+		&:hover {
+			color: $color-primary;
+		}
+
+		&:not(:last-child) {
+			margin-right: 2.5rem;
+		}
+	}
+}

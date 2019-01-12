@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');
 // eslint-disable-next-line
 const mongoose = require('./db/mongoose');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/api/users');
 const { cookieKey } = require('./config/keys');
 
 const app = express();
@@ -32,6 +33,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
