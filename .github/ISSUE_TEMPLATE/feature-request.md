@@ -4,7 +4,6 @@ about: Suggest an idea for this project
 title: Feature
 labels: enhancement
 assignees: ''
-
 ---
 
 **Describe a feature that you want to be added**
