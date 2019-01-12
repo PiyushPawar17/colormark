@@ -24,7 +24,7 @@ const Navbar = props => (
 					<Link to="/gradients" className="navbar__link">
 						Gradients
 					</Link>
-					<Link to="/me" className="navbar__link">
+					<Link to="/profile/me" className="navbar__link">
 						Profile
 					</Link>
 					{props.user.authenticated ? (

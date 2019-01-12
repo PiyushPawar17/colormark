@@ -7,6 +7,7 @@ import { getUser } from '../actions/userActions';
 import store from '../store';
 
 import Navbar from './Navbar';
+import ColorPage from './ColorPage';
 import NotFound from './NotFound';
 
 import '../sass/main.scss';
@@ -23,9 +24,8 @@ class App extends React.Component {
 					<div>
 						<Navbar />
 						<Switch>
-							<Route exact path="/swatches" component={NotFound} />
-							<Route exact path="/palettes" component={NotFound} />
-							<Route exact path="/gradients" component={NotFound} />
+							<Route exact path="/:type" component={ColorPage} />
+							<Route exact path="/profile/me" component={NotFound} />
 							<Route component={NotFound} />
 						</Switch>
 					</div>

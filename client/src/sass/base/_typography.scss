@@ -1,1 +1,7 @@
-// Typography Styles
+.heading {
+	font-size: 3rem;
+	font-weight: 300;
+	color: $default-font-color;
+	text-transform: capitalize;
+	margin: 5rem 0;
+}

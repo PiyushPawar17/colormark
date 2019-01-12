@@ -18,10 +18,10 @@ const colorData = ['_id', 'colors', 'type'];
 router.get('/:type', async (req, res) => {
 	const { type } = req.params;
 	const colorType = type === 'swatches' ? 'swatch' : type.substring(0, type.length - 1);
-	const allSwatches = await Color.find({ type: colorType });
-	const swatches = allSwatches.map(swatch => _.pick(swatch, colorData));
+	const allColors = await Color.find({ type: colorType });
+	const colors = allColors.map(color => _.pick(color, colorData));
 
-	res.json({ swatches });
+	res.json({ colors });
 });
 
 // --- POST Requests ---
