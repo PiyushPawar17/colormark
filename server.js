@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session');
 const mongoose = require('./db/mongoose');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/api/users');
+const colorRoutes = require('./routes/api/colors');
 const { cookieKey } = require('./config/keys');
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(passport.session());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/colors', colorRoutes);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

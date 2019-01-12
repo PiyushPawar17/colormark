@@ -10,7 +10,13 @@ const UserSchema = new Schema({
 	googleID: {
 		type: String,
 		required: true
-	}
+	},
+	favorites: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'color'
+		}
+	]
 });
 
 const User = mongoose.model('user', UserSchema);
