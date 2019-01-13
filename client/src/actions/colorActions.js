@@ -18,6 +18,20 @@ export const getColors = colorType => async dispatch => {
 	dispatch({ type, payload: res.data });
 };
 
+// --- Requests for GET Routes ---
+
+export const addColor = color => async dispatch => {
+	const res = await axios.post('/api/colors', color);
+	const type =
+		color.type === 'swatch'
+			? colorTypes.ADD_SWATCH
+			: color.type === 'palette'
+				? colorTypes.ADD_PALETTE
+				: colorTypes.ADD_GRADIENT;
+
+	dispatch({ type, payload: res.data });
+};
+
 // --- Other Actions ---
 
 export const loading = () => ({ type: colorTypes.COLOR_LOADING });

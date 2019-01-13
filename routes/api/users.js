@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 const authCheck = require('../../utils/authCheck');
 const User = require('../../models/User');
+const Color = require('../../models/Color');
 
 // Routes for /api/users
 
@@ -29,14 +30,17 @@ router.get('/me', async (req, res) => {
 
 // --- POST Requests ---
 
-// Route -> /api/users/favorite/:color
+// Route -> /api/users/favorite/:colorId
 // Adds color to favotire
-router.get('/favorite/:colorId', authCheck, async (req, res) => {
+router.post('/favorite/:colorId', authCheck, async (req, res) => {
 	const { colorId } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(colorId)) {
 		return res.status(400).json({ error: 'Invalid Color ID' });
 	}
+
+	const updatedColor = await Color.findByIdAndUpdate(colorId, { $addToSet: { likes: req.user.id } }, { new: true });
+	const color = _.pick(updatedColor, colorData);
 
 	const updatedUser = await User.findByIdAndUpdate(
 		req.user.id,
@@ -46,12 +50,12 @@ router.get('/favorite/:colorId', authCheck, async (req, res) => {
 
 	const user = _.pick(updatedUser, userData);
 
-	res.json({ user });
+	res.json({ user, color });
 });
 
 // --- DELETE Requests ---
 
-// Route -> /api/users/favorite/:color
+// Route -> /api/users/favorite/:colorId
 // Removes color from favotire
 router.delete('/favorite/:colorId', authCheck, async (req, res) => {
 	const { colorId } = req.params;
@@ -60,15 +64,18 @@ router.delete('/favorite/:colorId', authCheck, async (req, res) => {
 		return res.status(400).json({ error: 'Invalid Color ID' });
 	}
 
+	const updatedColor = await Color.findByIdAndUpdate(colorId, { $pull: { likes: req.user.id } }, { new: true });
+	const color = _.pick(updatedColor, colorData);
+
 	const updatedUser = await User.findByIdAndUpdate(
 		req.user.id,
-		{ $pullAll: { favorites: colorId } },
+		{ $pull: { favorites: colorId } },
 		{ new: true }
 	).populate('favorites', colorData);
 
 	const user = _.pick(updatedUser, userData);
 
-	res.json({ user });
+	res.json({ user, color });
 });
 
 module.exports = router;

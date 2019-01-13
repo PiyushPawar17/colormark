@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+import { addColor } from '../actions/colorActions';
 
 const ModalFullPage = styled.div.attrs(props => ({
 	id: props.id
@@ -128,6 +131,8 @@ class Modal extends React.Component {
 			color.colors = [...currentColors];
 		}
 
+		this.props.addColor(color);
+
 		const resetcolors = ['', '', '', ''];
 		this.setState({ colors: resetcolors });
 	}
@@ -222,7 +227,11 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-	type: PropTypes.string.isRequired
+	type: PropTypes.string.isRequired,
+	addColor: PropTypes.func.isRequired
 };
 
-export default Modal;
+export default connect(
+	null,
+	{ addColor }
+)(Modal);

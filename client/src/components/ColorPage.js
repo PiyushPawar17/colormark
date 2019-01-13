@@ -6,6 +6,7 @@ import { getColors } from '../actions/colorActions';
 
 import Container from './hoc/Container';
 import ColorCard from './ColorCard';
+import Loader from './Loader';
 import NotFound from './NotFound';
 
 class ColorPage extends React.Component {
@@ -31,17 +32,21 @@ class ColorPage extends React.Component {
 			<main className="colorpage">
 				<Container>
 					{type === 'swatches' || type === 'palettes' || type === 'gradients' ? (
+						<h1 className="heading">{type}</h1>
+					) : null}
+					{type === 'swatches' || type === 'palettes' || type === 'gradients' ? (
 						!loading ? (
-							<div>
-								<h1 className="heading">{type}</h1>
+							this.props.color[`${type}`].length === 0 ? (
+								<div className="info">Nothing to show</div>
+							) : (
 								<div className="cards">
 									{this.props.color[`${type}`].map((color, index) => (
 										<ColorCard key={color._id} color={color} index={index} />
 									))}
 								</div>
-							</div>
+							)
 						) : (
-							<div>Loading</div>
+							<Loader />
 						)
 					) : (
 						<NotFound />

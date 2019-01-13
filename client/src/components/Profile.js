@@ -24,13 +24,13 @@ class Profile extends React.Component {
 	}
 
 	render() {
-		const { user } = this.props;
+		const { user } = this.props.user;
 		const { type } = this.state;
 
 		return (
 			<div className="profile">
 				<Container>
-					<h1 className="heading">{user.user.name}</h1>
+					<h1 className="heading">{user.name}</h1>
 					<div className="profile__buttons">
 						<a href="#modal" name="swatches" className="btn btn--primary mr-big" onClick={this.changeType}>
 							Create Swatch
@@ -51,10 +51,14 @@ class Profile extends React.Component {
 									Liked {type}
 								</h1>
 								<div className="cards">
-									{user.user.favorites.map((color, index) =>
-										color.type === colorType ? (
-											<ColorCard key={color._id} color={color} index={index} />
-										) : null
+									{user.favorites.filter(color => color.type === colorType).length === 0 ? (
+										<div className="info">Nothing to show</div>
+									) : (
+										user.favorites.map((color, index) =>
+											color.type === colorType ? (
+												<ColorCard key={color._id} color={color} index={index} />
+											) : null
+										)
 									)}
 								</div>
 							</React.Fragment>

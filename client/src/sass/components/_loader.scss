@@ -1,0 +1,14 @@
+$primary-color: $loader-color;
+@import 'loaders.css/src/animations/ball-scale-ripple-multiple.scss';
+
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem 0;
+	height: 5rem;
+}
+
+.loader-active {
+	display: block;
+}

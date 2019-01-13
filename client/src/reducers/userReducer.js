@@ -15,6 +15,11 @@ export default (state = initialState, action) => {
 				user: action.payload.user,
 				authenticated: !isEmpty(action.payload.user)
 			};
+		case userTypes.UPDATE_USER:
+			return {
+				...state,
+				user: action.payload.user
+			};
 		default:
 			return state;
 	}
