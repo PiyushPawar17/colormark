@@ -15,7 +15,13 @@ const ColorSchema = new Schema({
 	addedBy: {
 		type: String,
 		required: true
-	}
+	},
+	likes: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'user'
+		}
+	]
 });
 
 const Color = mongoose.model('color', ColorSchema);

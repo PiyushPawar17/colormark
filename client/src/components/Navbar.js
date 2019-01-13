@@ -24,11 +24,13 @@ const Navbar = props => (
 					<Link to="/gradients" className="navbar__link">
 						Gradients
 					</Link>
-					<Link to="/profile/me" className="navbar__link">
-						Profile
-					</Link>
 					{props.user.authenticated ? (
-						<a href="/auth/logout">Sign Out</a>
+						<React.Fragment>
+							<Link to="/profile/me" className="navbar__link">
+								Profile
+							</Link>
+							<a href="/auth/logout">Sign Out</a>
+						</React.Fragment>
 					) : (
 						<a href="/auth/google">Sign In</a>
 					)}

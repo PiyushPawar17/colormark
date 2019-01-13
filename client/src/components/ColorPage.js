@@ -6,15 +6,20 @@ import { getColors } from '../actions/colorActions';
 
 import Container from './hoc/Container';
 import ColorCard from './ColorCard';
+import NotFound from './NotFound';
 
 class ColorPage extends React.Component {
 	componentDidMount() {
-		this.props.getColors(this.props.match.params.type);
+		const { type } = this.props.match.params;
+		if (type === 'swatches' || type === 'palettes' || type === 'gradients') {
+			this.props.getColors(type);
+		}
 	}
 
 	componentDidUpdate(prevProps) {
+		const { type } = this.props.match.params;
 		if (this.props.location !== prevProps.location) {
-			this.props.getColors(this.props.match.params.type);
+			this.props.getColors(type);
 		}
 	}
 
@@ -25,17 +30,21 @@ class ColorPage extends React.Component {
 		return (
 			<main className="colorpage">
 				<Container>
-					{!loading ? (
-						<div>
-							<h1 className="heading">{type}</h1>
-							<div className="colorpage__cards">
-								{this.props.color[`${type}`].map(color => (
-									<ColorCard key={color._id} color={color} />
-								))}
+					{type === 'swatches' || type === 'palettes' || type === 'gradients' ? (
+						!loading ? (
+							<div>
+								<h1 className="heading">{type}</h1>
+								<div className="cards">
+									{this.props.color[`${type}`].map(color => (
+										<ColorCard key={color._id} color={color} />
+									))}
+								</div>
 							</div>
-						</div>
+						) : (
+							<div>Loading</div>
+						)
 					) : (
-						<div>Loading</div>
+						<NotFound />
 					)}
 				</Container>
 			</main>

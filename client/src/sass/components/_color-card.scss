@@ -1,6 +1,6 @@
 .color-card {
 	border-radius: 5px;
-	box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1rem 5rem rgba($color-black, 0.2);
 	padding: 2rem;
 	margin-right: 2%;
 	margin-bottom: 10rem;
@@ -17,9 +17,16 @@
 	&__like {
 		margin-top: 3rem;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		font-size: 1.6rem;
 
 		img {
 			width: 2rem;
+		}
+
+		span {
+			margin-left: 2rem;
 		}
 	}
 }

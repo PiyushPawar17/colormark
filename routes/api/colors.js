@@ -9,7 +9,7 @@ const { colorValidation } = require('../../utils/colorValidation');
 // Routes for /api/colors
 
 // Color data to be returned
-const colorData = ['_id', 'colors', 'type'];
+const colorData = ['_id', 'colors', 'type', 'likes'];
 
 // --- GET Requests ---
 

@@ -65,6 +65,7 @@ const ColorCard = ({ color }) => {
 			</div>
 			<div className="color-card__like">
 				<img src={LikeOutlined} alt="Like" />
+				<span>{color.likes.length}</span>
 			</div>
 		</div>
 	);

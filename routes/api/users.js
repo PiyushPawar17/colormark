@@ -10,7 +10,7 @@ const User = require('../../models/User');
 // User data to be returned
 const userData = ['_id', 'name', 'favorites'];
 // Color data to be returned
-const colorData = ['_id', 'colors', 'type'];
+const colorData = ['_id', 'colors', 'type', 'likes'];
 
 // --- GET Requests ---
 

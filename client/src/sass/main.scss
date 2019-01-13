@@ -2,11 +2,14 @@
 
 @import 'base/base';
 @import 'base/typography';
+@import 'base/utilities';
 
+@import 'components/button';
+@import 'components/cards';
 @import 'components/color-card';
 @import 'components/container';
 
 @import 'layout/navbar';
 
-@import 'pages/colorpage';
 @import 'pages/not-found';
+@import 'pages/profile';
