@@ -1,12 +1,13 @@
 .btn {
 	display: inline-block;
-	padding: 1em 0.8em;
+	padding: 0.8em 1em;
 	font-size: 1.6rem;
 	border-radius: 5px;
 	border: 1px solid $color-primary;
 	color: $color-primary;
 	background-color: $color-white;
 	box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+	text-decoration: none;
 	cursor: pointer;
 	outline: none;
 	transition: all 0.2s ease-in-out;

@@ -1,0 +1,25 @@
+.modal {
+	&__label {
+		display: block;
+		font-size: 1.4rem;
+		margin-bottom: 1rem;
+	}
+
+	&__input {
+		border-radius: 3px;
+		border: none;
+		box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+		padding: 1rem 1.5rem;
+		outline: none;
+		margin-bottom: 2rem;
+		border: 1px solid transparent;
+
+		&:focus {
+			border: 1px solid #0ea5e6;
+		}
+	}
+
+	&__buttons {
+		margin-top: 3rem;
+	}
+}

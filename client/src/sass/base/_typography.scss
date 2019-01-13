@@ -8,4 +8,10 @@
 	img {
 		margin-right: 3rem;
 	}
+
+	&--secondary {
+		color: $default-font-color;
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
 }

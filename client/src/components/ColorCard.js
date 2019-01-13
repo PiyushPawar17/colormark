@@ -4,6 +4,26 @@ import PropTypes from 'prop-types';
 
 import LikeOutlined from '../img/heart-outlined.svg';
 
+const ColorCardWrapper = styled.div`
+	border-radius: 5px;
+	box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.2);
+	padding: 2rem;
+	margin-right: 2%;
+	margin-bottom: 10rem;
+	flex: 0 1 18%;
+	animation: moveInBottom 0.3s ease-in-out;
+	animation-delay: ${props => props.index / 5}s;
+	animation-fill-mode: backwards;
+`;
+
+const ColorCardColors = styled.div`
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	height: 17rem;
+	overflow: hidden;
+`;
+
 const ColorCardColor = styled.div`
 	position: relative;
 	height: 100%;
@@ -51,10 +71,10 @@ const ColorCardColor = styled.div`
 	}
 `;
 
-const ColorCard = ({ color }) => {
+const ColorCard = ({ color, index }) => {
 	return (
-		<div className="color-card">
-			<div className="color-card__colors">
+		<ColorCardWrapper index={index}>
+			<ColorCardColors>
 				{color.type === 'gradient' ? (
 					<ColorCardColor type={color.type} color1={color.colors[0]} color2={color.colors[1]} />
 				) : (
@@ -62,17 +82,18 @@ const ColorCard = ({ color }) => {
 						<ColorCardColor key={index} type={color.type} color={currentColor} />
 					))
 				)}
-			</div>
+			</ColorCardColors>
 			<div className="color-card__like">
 				<img src={LikeOutlined} alt="Like" />
 				<span>{color.likes.length}</span>
 			</div>
-		</div>
+		</ColorCardWrapper>
 	);
 };
 
 ColorCard.propTypes = {
-	color: PropTypes.object.isRequired
+	color: PropTypes.object.isRequired,
+	index: PropTypes.number.isRequired
 };
 
 export default ColorCard;

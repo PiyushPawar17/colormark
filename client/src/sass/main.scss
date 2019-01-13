@@ -1,5 +1,6 @@
 @import 'abstracts/variables';
 
+@import 'base/animations';
 @import 'base/base';
 @import 'base/typography';
 @import 'base/utilities';
@@ -8,6 +9,7 @@
 @import 'components/cards';
 @import 'components/color-card';
 @import 'components/container';
+@import 'components/modal';
 
 @import 'layout/navbar';
 

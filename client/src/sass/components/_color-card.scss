@@ -1,19 +1,4 @@
 .color-card {
-	border-radius: 5px;
-	box-shadow: 0 1rem 5rem rgba($color-black, 0.2);
-	padding: 2rem;
-	margin-right: 2%;
-	margin-bottom: 10rem;
-	flex: 0 1 18%;
-
-	&__colors {
-		display: flex;
-		flex-direction: column;
-		border-radius: 5px;
-		height: 17rem;
-		overflow: hidden;
-	}
-
 	&__like {
 		margin-top: 3rem;
 		cursor: pointer;

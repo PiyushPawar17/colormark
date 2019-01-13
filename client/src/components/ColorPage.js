@@ -35,8 +35,8 @@ class ColorPage extends React.Component {
 							<div>
 								<h1 className="heading">{type}</h1>
 								<div className="cards">
-									{this.props.color[`${type}`].map(color => (
-										<ColorCard key={color._id} color={color} />
+									{this.props.color[`${type}`].map((color, index) => (
+										<ColorCard key={color._id} color={color} index={index} />
 									))}
 								</div>
 							</div>

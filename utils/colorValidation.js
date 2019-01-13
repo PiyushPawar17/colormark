@@ -13,10 +13,8 @@ const colorValidation = ({ colors, type }) => {
 			error.colors = 'No color specified';
 		} else if (type === 'swatch' && colors.length > 1) {
 			error.colors = 'Swatch cannot have more than one color';
-		} else if (type === 'palette' && colors.length > 4) {
-			error.colors = 'Palette cannot have more than four colors';
-		} else if (type === 'palette' && colors.length < 3) {
-			error.colors = 'Palette cannot have less than three colors';
+		} else if (type === 'palette' && colors.length !== 4) {
+			error.colors = 'Palette should have four colors only';
 		} else if (type === 'gradient' && colors.length !== 2) {
 			error.colors = 'Gradients should have two colors colors only';
 		} else {
