@@ -53,4 +53,10 @@ yarn run dev
 
 ---
 
+### Inspiration
+
+This project is inspired by [Color Hunt](https://colorhunt.co/).
+
+---
+
 Found a bug? Create an [issue](https://github.com/PiyushPawar17/colormark/issues).
