@@ -36,6 +36,7 @@ const ModalWrapper = styled.div`
 	background-color: #ffffff;
 	border-radius: 5px;
 	box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+	overflow: auto;
 `;
 
 const ModalContent = styled.div`
@@ -69,10 +70,20 @@ const ModalHeading = styled.div`
 
 const ModalData = styled.div`
 	display: flex;
+
+	@media screen and (max-width: 650px) {
+		flex-direction: column;
+	}
 `;
 
 const ModalDataContent = styled.div`
 	flex: 0 0 50%;
+
+	@media screen and (max-width: 650px) {
+		flex: 0 0 80%;
+		margin: 0 auto;
+		margin-bottom: 5rem;
+	}
 `;
 
 const ModalColorsPreview = styled.div`

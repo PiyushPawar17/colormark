@@ -1,5 +1,5 @@
 .navbar {
-	height: 7rem;
+	min-height: 7rem;
 	box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
 	display: flex;
 	align-items: center;
@@ -8,10 +8,19 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		@media screen and (max-width: 800px) {
+			flex-direction: column;
+			padding: 1rem 0;
+		}
 	}
 
 	&__logo {
 		width: 15rem;
+
+		@media screen and (max-width: 800px) {
+			margin-bottom: 2rem;
+		}
 	}
 
 	&__links {

@@ -4,5 +4,8 @@
 	&__buttons {
 		display: flex;
 		flex-wrap: wrap;
+		a {
+			margin-bottom: 2rem;
+		}
 	}
 }

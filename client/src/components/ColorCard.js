@@ -16,8 +16,33 @@ const ColorCardWrapper = styled.div`
 	margin-bottom: 10rem;
 	flex: 0 1 18%;
 	animation: moveInBottom 0.3s ease-in-out;
-	animation-delay: ${props => props.index / 5}s;
+	animation-delay: ${props => props.index / 10}s;
 	animation-fill-mode: backwards;
+
+	@media screen and (max-width: 1200px) {
+		flex: 0 1 23%;
+		margin-right: 2%;
+	}
+
+	@media screen and (max-width: 950px) {
+		flex: 0 1 31%;
+		margin-right: 2%;
+	}
+
+	@media screen and (max-width: 700px) {
+		flex: 0 1 46%;
+		margin-right: 4%;
+	}
+
+	@media screen and (max-width: 500px) {
+		flex: 0 1 75%;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+	}
+
+	@media screen and (max-width: 375px) {
+		flex: 0 1 90%;
+	}
 `;
 
 const ColorCardColors = styled.div`
@@ -26,6 +51,10 @@ const ColorCardColors = styled.div`
 	border-radius: 5px;
 	height: 17rem;
 	overflow: hidden;
+
+	@media screen and (max-width: 700px) {
+		height: 20rem;
+	}
 `;
 
 const ColorCardColor = styled.div`
