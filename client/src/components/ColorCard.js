@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Tippy from '@tippy.js/react';
+import ClipboardJS from 'clipboard';
 import PropTypes from 'prop-types';
 
 import { addToFavorites, removeFromFavorites } from '../actions/userActions';
 
 import LikeOutlined from '../img/heart-outlined.svg';
 import LikeFilled from '../img/heart-filled.svg';
+
+import 'tippy.js/dist/tippy.css';
 
 const ColorCardWrapper = styled.div`
 	border-radius: 5px;
@@ -15,6 +19,7 @@ const ColorCardWrapper = styled.div`
 	margin-right: 2%;
 	margin-bottom: 10rem;
 	flex: 0 1 18%;
+	outline: none;
 	animation: moveInBottom 0.3s ease-in-out;
 	animation-delay: ${props => props.index / 10}s;
 	animation-fill-mode: backwards;
@@ -51,6 +56,7 @@ const ColorCardColors = styled.div`
 	border-radius: 5px;
 	height: 17rem;
 	overflow: hidden;
+	outline: none;
 
 	@media screen and (max-width: 700px) {
 		height: 20rem;
@@ -64,6 +70,7 @@ const ColorCardColor = styled.div`
 	background-image: ${props =>
 		props.type === 'gradient' && `linear-gradient(to bottom, ${props.color1}, ${props.color2})`};
 	background-color: ${props => (props.type === 'swatch' || props.type === 'palette') && props.color};
+	outline: none;
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
 
@@ -108,8 +115,35 @@ class ColorCard extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.card1 = React.createRef();
+		this.card2 = React.createRef();
+		this.card3 = React.createRef();
+		this.card4 = React.createRef();
+		this.tip = React.createRef();
+
 		this.addToFavorites = this.addToFavorites.bind(this);
 		this.removeFromFavorites = this.removeFromFavorites.bind(this);
+		this.click = this.click.bind(this);
+		this.hide = this.hide.bind(this);
+	}
+
+	componentDidMount() {
+		new ClipboardJS(this.card1.current);
+
+		if (this.props.color.type === 'palette') {
+			new ClipboardJS(this.card2.current);
+			new ClipboardJS(this.card3.current);
+			new ClipboardJS(this.card4.current);
+		}
+	}
+
+	click() {
+		this.tip.current.tip.setContent('Copied!');
+		this.tip.current.tip.show();
+	}
+
+	hide() {
+		this.tip.current.tip.setContent('Click to copy');
 	}
 
 	addToFavorites() {
@@ -135,25 +169,41 @@ class ColorCard extends React.Component {
 		}
 
 		return (
-			<ColorCardWrapper index={index}>
-				<ColorCardColors>
-					{color.type === 'gradient' ? (
-						<ColorCardColor type={color.type} color1={color.colors[0]} color2={color.colors[1]} />
-					) : (
-						color.colors.map((currentColor, index) => (
-							<ColorCardColor key={index} type={color.type} color={currentColor} />
-						))
-					)}
-				</ColorCardColors>
-				<div className="color-card__like">
-					{!liked ? (
-						<img src={LikeOutlined} alt="Like" onClick={this.addToFavorites} />
-					) : (
-						<img src={LikeFilled} alt="Like" onClick={this.removeFromFavorites} />
-					)}
-					<span>{color.likes.length}</span>
-				</div>
-			</ColorCardWrapper>
+			<Tippy content="Click to copy" ref={this.tip} onHidden={this.hide}>
+				<ColorCardWrapper index={index}>
+					<ColorCardColors>
+						{color.type === 'gradient' ? (
+							<ColorCardColor
+								type={color.type}
+								color1={color.colors[0]}
+								color2={color.colors[1]}
+								ref={this.card1}
+								data-clipboard-text={`${color.colors[0]} ${color.colors[1]}`}
+								onClick={this.click}
+							/>
+						) : (
+							color.colors.map((currentColor, index) => (
+								<ColorCardColor
+									key={index}
+									type={color.type}
+									color={currentColor}
+									ref={this[`card${index + 1}`]}
+									data-clipboard-text={currentColor}
+									onClick={this.click}
+								/>
+							))
+						)}
+					</ColorCardColors>
+					<div className="color-card__like">
+						{!liked ? (
+							<img src={LikeOutlined} alt="Like" onClick={this.addToFavorites} />
+						) : (
+							<img src={LikeFilled} alt="Like" onClick={this.removeFromFavorites} />
+						)}
+						<span>{color.likes.length}</span>
+					</div>
+				</ColorCardWrapper>
+			</Tippy>
 		);
 	}
 }

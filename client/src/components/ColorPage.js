@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import { getColors } from '../actions/colorActions';
 
-import Container from './hoc/Container';
 import ColorCard from './ColorCard';
 import Loader from './Loader';
 import NotFound from './NotFound';
@@ -30,7 +29,7 @@ class ColorPage extends React.Component {
 
 		return (
 			<main className="colorpage">
-				<Container>
+				<div className="container">
 					{type === 'swatches' || type === 'palettes' || type === 'gradients' ? (
 						<h1 className="heading">{type}</h1>
 					) : null}
@@ -51,7 +50,7 @@ class ColorPage extends React.Component {
 					) : (
 						<NotFound />
 					)}
-				</Container>
+				</div>
 			</main>
 		);
 	}

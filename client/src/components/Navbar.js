@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Container from './hoc/Container';
-
 import Logo from '../img/logo-big.svg';
 
 const Navbar = props => (
 	<nav className="navbar">
-		<Container>
+		<div className="container">
 			<div className="navbar__container">
 				<Link className="navbar__link" to="/swatches">
 					<img src={Logo} alt="Logo" className="navbar__logo" />
@@ -36,7 +34,7 @@ const Navbar = props => (
 					)}
 				</div>
 			</div>
-		</Container>
+		</div>
 	</nav>
 );
 

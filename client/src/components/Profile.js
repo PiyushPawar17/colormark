@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Container from './hoc/Container';
 import ColorCard from './ColorCard';
 import Modal from './Modal';
 
@@ -29,7 +28,7 @@ class Profile extends React.Component {
 
 		return (
 			<div className="profile">
-				<Container>
+				<div className="container">
 					<h1 className="heading">{user.name}</h1>
 					<div className="profile__buttons">
 						<a href="#modal" name="swatches" className="btn btn--primary mr-big" onClick={this.changeType}>
@@ -65,7 +64,7 @@ class Profile extends React.Component {
 						);
 					})}
 					<Modal type={type} />
-				</Container>
+				</div>
 			</div>
 		);
 	}
