@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Tippy from '@tippy.js/react';
 import ClipboardJS from 'clipboard';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 import PropTypes from 'prop-types';
 
 import { addToFavorites, removeFromFavorites } from '../actions/userActions';
@@ -11,6 +12,7 @@ import LikeOutlined from '../img/heart-outlined.svg';
 import LikeFilled from '../img/heart-filled.svg';
 
 import 'tippy.js/dist/tippy.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const ColorCardWrapper = styled.div`
 	border-radius: 5px;
@@ -138,17 +140,28 @@ class ColorCard extends React.Component {
 	}
 
 	click() {
-		this.tip.current.tip.setContent('Copied!');
+		this.tip.current.tip.setContent('<span class="tooltip">Copied!</span>');
 		this.tip.current.tip.show();
 	}
 
 	hide() {
-		this.tip.current.tip.setContent('Click to copy');
+		this.tip.current.tip.setContent('<span class="tooltip">Click to copy</span>');
 	}
 
-	addToFavorites() {
+	addToFavorites(event) {
+		event.stopPropagation();
+
 		if (this.props.user.authenticated) {
 			this.props.addToFavorites(this.props.color._id);
+		} else {
+			toast.info('You need to login to like', {
+				position: 'bottom-right',
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: false,
+				className: 'toast'
+			});
 		}
 	}
 
@@ -169,7 +182,7 @@ class ColorCard extends React.Component {
 		}
 
 		return (
-			<Tippy content="Click to copy" ref={this.tip} onHidden={this.hide}>
+			<Tippy content={<span className="tooltip">Click to copy</span>} ref={this.tip} onHidden={this.hide}>
 				<ColorCardWrapper index={index}>
 					<ColorCardColors>
 						{color.type === 'gradient' ? (
@@ -202,6 +215,7 @@ class ColorCard extends React.Component {
 						)}
 						<span>{color.likes.length}</span>
 					</div>
+					<ToastContainer transition={Zoom} />
 				</ColorCardWrapper>
 			</Tippy>
 		);

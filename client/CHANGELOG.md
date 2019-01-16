@@ -18,6 +18,8 @@ All notable changes to this project will be documented in this file.
 
 -   Tooltip on Card hover
 -   Copy to clipboard option
+-   Toast notifications
+-   Create button on every color page
 
 ### Removed
 
